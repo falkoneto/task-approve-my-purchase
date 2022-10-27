@@ -10,11 +10,14 @@ public class Manager extends Approver {
     public void approve(int id, double cost, Type type) {
         if (canApprove(id, cost, type)) {
             System.out.println("Manager approved purchase with id " + id + " that costs " + cost);
-            return;
-        }
+
+        } else {
+
+
 
         System.out.println("Purchase with id " + id + " needs approval from higher position than Manager.");
         next.approve(id, cost, type);
+        }
     }
 
     @Override
@@ -23,22 +26,21 @@ public class Manager extends Approver {
 
         if (type == Type.CONSUMABLES && cost <= 300) {
             result = true;
-            return result;
+
         } else if (type == Type.CLERICAL && cost <= 500) {
-            result = false;
-            return result;
+            result = true;
+
         } else if (type == Type.GADGETS && cost <= 1000) {
             result = true;
-            return result;
-        } else if (type == Type.GAMING && cost <= 2000) {
+
+        } else if (type == Type.GAMING && cost <= 3000) {
             result = true;
-            return result;
+
         } else if (type == Type.PC && cost <= 5000) {
             result = true;
-            return result;
-        } else {
-            result = false;
-            return result;
+
         }
+            return result;
+
     }
 }

@@ -5,7 +5,6 @@ import common.Type;
 public abstract class Approver {
 
     protected Approver next;
-
     /**
      * If needed, be free to change signature of abstract methods.
      */

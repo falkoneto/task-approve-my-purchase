@@ -23,6 +23,6 @@ Take notice of JavaDoc information above class names that have instructions on w
 you should not change in order for the application to work and TODO markings where you need to implement new code.
 Also, think about how you can make code more optimized and readable.
  
-The application is created using Java 17.
+The application is created using Java 17. 
  
 

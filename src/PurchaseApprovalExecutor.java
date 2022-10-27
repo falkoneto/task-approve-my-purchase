@@ -13,9 +13,9 @@ public class PurchaseApprovalExecutor {
         ApprovalChainGenerator.generate(manager);
         //Be free to modify method below this line
 
-        manager.approve(1, 15000, Type.CONSUMABLES);
-        manager.approve(2, 5000, Type.PC);
-        manager.approve(3, 5000, Type.PC);
+        manager.approve(1, 8001, Type.PC);
+        manager.approve(2, 4900, Type.PC);
+        manager.approve(3, 5000, Type.GAMING);
         manager.approve(4, 3000, Type.CLERICAL);
     }
 }
