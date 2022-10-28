@@ -2,6 +2,8 @@ import common.Type;
 import handlers.Approver;
 import handlers.Manager;
 
+import java.util.InputMismatchException;
+import java.util.Locale;
 import java.util.Scanner;
 
 /**
@@ -17,22 +19,53 @@ public class PurchaseApprovalExecutor {
         ApprovalChainGenerator.generate(manager);
         //Be free to modify method below this line
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your ID:");
-        int id = scanner.nextInt();
-        System.out.println("Enter the price for new request:");
-        double cost = scanner.nextDouble();
+        Scanner s = new Scanner(System.in);
+        int id;
+        do {
+            System.out.println("Enter your ID:");
+            while (!s.hasNextInt()) {
+                System.err.println("Not correctly entered ID value, please try again!");
+                System.out.println("Enter your ID:");
+                s.next();
+            }
+            id = s.nextInt();
+        } while (id < 0);
+
+        double cost;
+        do {
+            System.out.println("Enter the price for new request:");
+            while (!s.hasNextDouble()) {
+                System.err.println("Not correctly entered money value, please try again!");
+                System.out.println("Enter the price for new request:");
+                s.next();
+            }
+            cost = s.nextDouble();
+        } while (cost < 0);
+
         System.out.println("Enter the type of the new request (CONSUMABLES, CLERICAL, GADGETS, GAMING or PC):");
-        scanner.nextLine();
-        String type = scanner.nextLine();
-        scanner.close();
+        String type = s.next().toUpperCase();
 
         manager.approve(id, cost, Type.valueOf(type));
 
-        //manager.approve(1, 8001, Type.PC);
-        //manager.approve(2, 4900, Type.PC);
-        //manager.approve(3, 5000, Type.GAMING);
-        //manager.approve(4, 3000, Type.CLERICAL);
 
+        while (true) {
+            System.out.println("\nDo you want to continue (y / n):");
+            String answer = s.next().toLowerCase();
+            if (answer.equals("y")) {
+                execute();
+            } else if (answer.equals("n")) {
+                s.close();
+                break;
+            }
+        }
+
+
+/*
+//This is your input
+           manager.approve(1, 8001, Type.PC);
+           manager.approve(2, 4900, Type.PC);
+           manager.approve(3, 5000, Type.GAMING);
+           manager.approve(4, 3000, Type.CLERICAL);
+*/
     }
 }
