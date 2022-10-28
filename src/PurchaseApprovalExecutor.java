@@ -33,5 +33,6 @@ public class PurchaseApprovalExecutor {
         //manager.approve(2, 4900, Type.PC);
         //manager.approve(3, 5000, Type.GAMING);
         //manager.approve(4, 3000, Type.CLERICAL);
+
     }
 }
