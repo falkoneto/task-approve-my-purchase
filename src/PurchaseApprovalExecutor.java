@@ -9,6 +9,8 @@ import java.util.Scanner;
  * Be free to modify below line 14 (bellow comment line)
  */
 public class PurchaseApprovalExecutor {
+    private PurchaseApprovalExecutor() {
+    }
 
     public static void execute() {
         Approver manager = new Manager();
@@ -17,16 +19,15 @@ public class PurchaseApprovalExecutor {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your ID:");
-        int id = Integer.parseInt(scanner.nextLine());
-        System.out.println("Enter the price for new device:");
-        double cost = Double.parseDouble(scanner.nextLine());
-        System.out.println("Enter the type of the new device ( only with capital letters ):");
+        int id = scanner.nextInt();
+        System.out.println("Enter the price for new request:");
+        double cost = scanner.nextDouble();
+        System.out.println("Enter the type of the new request (CONSUMABLES, CLERICAL, GADGETS, GAMING or PC):");
+        scanner.nextLine();
         String type = scanner.nextLine();
+        scanner.close();
 
         manager.approve(id, cost, Type.valueOf(type));
-
-
-
 
         //manager.approve(1, 8001, Type.PC);
         //manager.approve(2, 4900, Type.PC);
