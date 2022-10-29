@@ -42,11 +42,23 @@ public class PurchaseApprovalExecutor {
             cost = s.nextDouble();
         } while (cost < 0);
 
-        System.out.println("Enter the type of the new request (CONSUMABLES, CLERICAL, GADGETS, GAMING or PC):");
-        String type = s.next().toUpperCase();
-
+        String type = null;
+        boolean isTrue = true;
+        while (isTrue){
+            System.out.println("Enter the type of the new request (CONSUMABLES, CLERICAL, GADGETS, GAMING or PC):");
+            String enteredType = s.next().toUpperCase();
+            switch (enteredType) {
+                case "CONSUMABLES", "CLERICAL", "GADGETS", "GAMING", "PC" -> {
+                    type = enteredType;
+                    isTrue = false;
+                }
+                default -> {
+                    System.err.println("Incorrect input for type!");
+                    isTrue = true;
+                }
+            }
+        }
         manager.approve(id, cost, Type.valueOf(type));
-
 
         while (true) {
             System.out.println("\nDo you want to continue (y / n):");
